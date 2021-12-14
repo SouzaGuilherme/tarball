@@ -1,0 +1,15 @@
+gcp_credentials = "maxxer-test-51e2bc72d7f9.json"
+gcp_project_id = "maxxer-test"
+gcp_zone = "southamerica-east1-a"
+gcp_region = "southamerica-east1"
+gke_regional = false
+gcp_cluster_name = "cluster-k8s-maxxer"
+gke_zone = ["southamerica-east1-c"]
+gke_machine_type = "n2-standard-2"
+gke_network = "default"
+gke_subnetwork = "default"
+gke_service_account = "maxxer-test@maxxer-test.iam.gserviceaccount.com"
+gke_node_name_pool = "node-name-default"
+disk_size_gb = 30
+initial_node_count = 2
+max_node_count = 3
