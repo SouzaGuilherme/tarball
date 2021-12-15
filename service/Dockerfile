@@ -7,7 +7,9 @@ RUN cd ./app \
     && go get github.com/go-sql-driver/mysql \
     && go get github.com/gin-gonic/gin \
     && go get . \
-    && go build service.go 
+    && go build service.go
 
-ENTRYPOINT [ "/app/service" ]
+
 EXPOSE 3000
+
+CMD [ "./app/service" ]
