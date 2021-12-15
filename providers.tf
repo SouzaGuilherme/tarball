@@ -21,10 +21,25 @@ provider "google-beta" {
 }
 
 # google_client_config and kubernetes provider must be explicitly specified like the following.
-data "google_client_config" "default" {}
+data "google_client_config" "default" {
+}
+
+# provider "kubernetes" {
+#   host                   = "https://${module.kubernetes-engine.endpoint}"
+#   token                  = data.google_client_config.default.access_token
+#   cluster_ca_certificate = base64decode(module.kubernetes-engine.ca_certificate)
+# }
 
 provider "kubernetes" {
-  host                   = "https://${module.kubernetes-engine.endpoint}"
-  token                  = data.google_client_config.default.access_token
+  host  = "https://${module.kubernetes-engine.endpoint}"
+  token = data.google_client_config.default.access_token
   cluster_ca_certificate = base64decode(module.kubernetes-engine.ca_certificate)
+}
+
+provider "helm" {
+    kubernetes {
+      host  = "https://${module.kubernetes-engine.endpoint}"
+      token = data.google_client_config.default.access_token
+      cluster_ca_certificate = base64decode(module.kubernetes-engine.ca_certificate)
+  }
 }

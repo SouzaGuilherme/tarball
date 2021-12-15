@@ -76,3 +76,11 @@ module "kubernetes-engine" {
     ]
   }
 }
+
+# run this first: `helm repo add bitnami https://charts.bitnami.com/bitnami`
+resource "helm_release" "worldcities" {
+  name  = "worldcities"
+  chart = "./helm/citys-world"
+  namespace = "worldcities"
+  create_namespace = true
+}
