@@ -11,7 +11,9 @@ import (
 
 func main() {
 
-	db, err := sql.Open("mysql", "MainUser:MainPassword@tcp(192.168.8.132:3306)/Worldcities")
+	//db, err := sql.Open("mysql", "MainUser:MainPassword@tcp(192.168.8.132:3306)/Worldcities")
+	// Acess DB in cluster
+	db, err := sql.Open("mysql", "root:RootPassword@tcp(localhost:3306)/Worldcities")
 
 	if err != nil {
 		fmt.Print(err.Error())
