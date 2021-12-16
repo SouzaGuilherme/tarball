@@ -99,4 +99,14 @@ resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   namespace  = "monitoring"
   create_namespace = true
+
+  set {
+    name  = "adminUser"
+    value = "admin"
+  }
+
+  set {
+    name  = "adminPassword"
+    value = "admin"
+  }
 }
