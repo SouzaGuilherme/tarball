@@ -1,0 +1,6 @@
+{{ .Chart.Name }} was installed with the name of {{ .Release.Name }}.
+
+For more information use the commands below:
+
+   $ helm status {{ .Release.Name }}
+   $ helm get all {{ .Release.Name }}

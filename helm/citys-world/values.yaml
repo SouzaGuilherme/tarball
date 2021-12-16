@@ -1,0 +1,11 @@
+# Prometheus
+metrics: 'false'
+
+# Service consume DB
+version: latest
+
+
+# MariaDB
+mariadb:
+  version: latest
+  rootpassword: RootPassword

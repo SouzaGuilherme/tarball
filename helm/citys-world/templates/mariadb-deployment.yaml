@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mariadb-service
+spec:
+  ports:
+  - port: 3306
+    name: mariadb-service
+  selector:
+    app: mariadb
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mariadb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mariadb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mariadb
+      {{- if .Values.metrics }}
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '3306'
+      {{- end}}
+    spec:
+      containers:
+      - image: souzapro/simple-mariadb-citiesworld:{{ .Values.mariadb.version}}
+        name: mariadb
+        env:
+          # Use secret in real usage
+        - name: MARIADB_ROOT_PASSWORD
+          value: {{ .Values.mariadb.rootpassword }}
+        ports:
+        - containerPort: 3306
+          name: mariadb
