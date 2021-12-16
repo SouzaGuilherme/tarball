@@ -1,6 +1,6 @@
 variable "gcp_credentials" {
     type = string
-    default = ""
+    default = "maxxer-test-51e2bc72d7f9.json"
     description = "Location of service account for GCP"
 }
 

@@ -1,6 +1,6 @@
 module "kubernetes-engine" {
   source                     = "terraform-google-modules/kubernetes-engine/google"
-  version = "17.3.0"
+  
   project_id                 = var.gcp_project_id
   name                       = var.gcp_cluster_name
   region                     = var.gcp_region
@@ -91,6 +91,7 @@ resource "helm_release" "prometheus" {
   repository = "https://prometheus-community.github.io/helm-charts"
   namespace  = "monitoring"
   create_namespace = true
+  version = "15.0.0"
 }
 
 resource "helm_release" "grafana" {
@@ -99,6 +100,7 @@ resource "helm_release" "grafana" {
   repository = "https://grafana.github.io/helm-charts"
   namespace  = "monitoring"
   create_namespace = true
+  version = "6.19.4"
 
   set {
     name  = "adminUser"
