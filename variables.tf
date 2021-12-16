@@ -24,7 +24,7 @@ variable "gcp_zone" {
 
 variable "gke_regional" {
     type = bool
-    defadefault = false
+    default = false
     description = "GKE regional selected"
 }
 
@@ -76,7 +76,7 @@ variable "gke_service_account" {
 
 variable "gke_node_name_pool" {
     type = string
-    defauldefault = "node-name-default"
+    default = "node-name-default"
     description = "GKE node name pool"
 }
 
