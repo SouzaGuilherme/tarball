@@ -9,6 +9,25 @@ GKE has a toy service locale installed via helm chart, it also has prometheus an
 
 The chart was created locally and has a mariadb database to carry out the consumption. The Dockerfile for creating the image used to create the service and database used here is also provided.
 
+Video running and explaining the proposed solution:
+
+:computer:  :video_camera: :iphone: :eyeglasses:
+
+ https://drive.google.com/file/d/1y3YlVIJOecb1Xa_aaAz4S-ucM66ZZVfE/view?usp=sharing
+
+Time to view a specific tutorial action and my project considerations:
+
+ - 0m video: Overview
+ - 2m:17s video: Toy Service
+ - 5m:45s video: Helm Chart
+ - 8m:54s video: Terraform
+ - 14m video: Execute Project
+ - 19m:51s video: Cluster Up
+ - 23m video: Testing Toy Service
+ - 24m:16s video: View Helm Charts
+ - 28m:45s video: Cluster Down
+ - 28m:53s video: Project Considerations
+
 ## Toy Service
 ---
 First we have a simple API written in golang. Its function is nothing more to be a crud of cities in the world, providing the id, city and country. Allowing the main functions:
@@ -16,9 +35,6 @@ First we have a simple API written in golang. Its function is nothing more to be
 - [x] /POST
 - [x] /PUT
 - [x] /DELETE
-
-The API can be viewed at:
-[IMAGE AQUI]
 
 Inside the folder contains the Dockerfile used to generate the image that is available in my dockerhub. To do this, just run the command:
 
@@ -53,7 +69,7 @@ mariadb:
   rootpassword: RootPassword
 ```
 
-to monitor the GKE cluster, taking advantage of the implementation of the first chart, I followed the same path for the implementation of prometheus and grafana, thus making use of two online chart repositories:
+To monitor the GKE cluster, taking advantage of the implementation of the first chart, I followed the same path for the implementation of prometheus and grafana, thus making use of two online chart repositories:
 
 |chart | repositories|
 |------|-------------|
@@ -100,19 +116,19 @@ $ terraform plan
 $ terraform apply
 ```
 
-now we can connect to our GKE using gcloud sdk from the command line:
+Now we can connect to our GKE using gcloud sdk from the command line:
 
 ```Shell
 $ gcloud container clusters get-credentials name_cluster --zone zona_selected --project name_project
 ```
 
-in the case of the default project, just use:
+In the case of the default project, just use:
 
 ```Shell
 $ gcloud container clusters get-credentials cluster-k8s-maxxer --zone southamerica-east1-c --project maxxer-test
 ```
 
-now we can see if our cluster was actually created, either by the kubectl command or by the graphical console interface.
+Now we can see if our cluster was actually created, either by the kubectl command or by the graphical console interface.
 
 Console Google
 <img src="img_readme/interfaceGKE.png"/>
@@ -125,7 +141,7 @@ $ kubectl get nodes
 
 <img src="img_readme/nodos.png"/>
 
-still using the kubectl command we can see if all our charts have been installed and are running
+Still using the kubectl command we can see if all our charts have been installed and are running
 
 ```Shell
 $ kubectl get pods -n worldcities
@@ -137,7 +153,7 @@ $ kubectl get svc -A
 
 With the last command in the list we can get the external ip of our cluster and use it to test our toy service using some tool or the terminal.
 
-for the toy service tests I used the insomnia tool, below I present the prints of the model tests.
+For the toy service tests I used the insomnia tool, below I present the prints of the model tests.
 
 <img src="img_readme/getAll.png"/>
 <img src="img_readme/getID.png"/>
